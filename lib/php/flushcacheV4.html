@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>加速乐缓存清理公众平台</title>
+<style type="text/css">
+.mr20 { margin-right: 20px; }
+.int { border: 1px solid #DDD; }
+.int:focus { border-color: #007aff; -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6); -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6); box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6); -webkit-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; }
+input.int { width: 13em; }
+.bt { cursor: pointer; color: #FFF; padding: 0.3em 1em; background-color: #2d89d7; border: none 0; }
+.bt:hover{ background-color:#08C;  }
+.int, .bt{ line-height:20px;}
+.lab { margin-right: 2em; }
+.lab strong { margin-right: 0.5em; }
+textarea.int { display: block; width: 96%; resize: vertical; padding: 0.5em 2%; }
+.f_1, .int, .bt { font-size: 14px; font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.f_1 { line-height: 30px; width: 60%; margin: 20px auto 0; max-width: 960px; min-width: 640px; }
+.f_1 input { padding: 5px 10px; }
+.f_1 input.int { width: 15%; max-width: 20em; min-width: 10em; }
+.f_1 legend { font-size: 2em; }
+.f_1 fieldset{ margin-bottom:20px; }
+.f1_row { margin: 20px 2%; }
+.f1_tta { height: 10em; margin-bottom:5px; }
+.chera { margin-right: 2em; }
+.chera strong { vertical-align: middle; }
+.chera input { margin: 0; vertical-align: middle; }
+</style>
+</head>
+<body>
+<script>
+	function trim(s) {   
+		var count = s.length;   
+		var st    = 0;       // start   
+		var end   = count-1; // end   
+			 
+	    if (s == "") return s;   
+			while (st < count) {   
+			     if (s.charAt(st) == " ")   
+				   st ++;   
+				 else  
+				   break;   
+			   }   
+			   while (end > st) {   
+				 if (s.charAt(end) == " ")   
+				   end --;   
+				 else  
+				   break;   
+			   }   
+			   return s.substring(st,end + 1);   
+	   } 
+			 
+	function isEmpty(){   
+		//form1是form中的name属性   
+		var _form = document.form1;
+			 
+		if(trim(_form.username.value)==""){   
+			alert("用户名不能为空!");           
+			return false;   
+		}   
+		if(trim(_form.password.value)==""){   
+			alert("密码不能为空!");          
+			return false;   
+		}  
+		if(trim(_form.domain.value)==""){   
+			alert("操作域不能为空!");          
+			return false;   
+		}  
+		if(trim(_form.url_list.value)==""){   
+			alert("URL对象不能为空!");          
+			return false;   
+		}  
+		return true;
+	}
+</script>
+
+<form name="form1" method="post" action="flushcacheV4.php" class="f_1">
+  <fieldset>
+    <legend>加速乐缓存清理公众平台</legend>
+    <div class="f1_row">
+      <label class="mr20 lab"><strong>用户名:</strong>
+        <input class="int" name="username" type="text" size="23">
+      </label>
+      <label class="lab"><strong>密码:</strong>
+        <input class="int" type="password" name="password">
+      </label>
+      <label class="mr20 lab"><strong>操作域:</strong>
+        <input class="int" name="domain" type="text" value="example.com" size="20">
+      </label>
+    </div>
+    <div class="f1_row">
+      <textarea class="f1_tta int" id="url_list" name="url_list"></textarea>
+      <div>
+        <label class="chera">&nbsp;刷新整子域所有缓存<label class="chera" class="mr20">
+        <input type="radio" name="type" checked="checked" value="host">
+        </label>
+        <label class="chera">&nbsp;刷新某些网址缓存<label class="chera" class="mr20">
+		<input type="radio" name="type" value="url">
+        </label>
+      </div>
+    </div>
+    <div class="f1_row">
+      <button type="submit" class="bt" onclick="return isEmpty()">提交</button>
+    </div>
+  	</label></label>
+  </fieldset>
+  
+  <fieldset>
+    <legend>备注</legend>
+    <ol>
+		<li>以http://或https://开头，一行一个网址。</li>
+		<li>刷新整子域所有缓存：在清理对象框中输入要清理的子域名（如：<span lang="en-us">http://www.example.com</span>）
+		。</li>
+		<li>刷新某些网址缓存<span lang="zh-cn">：在</span>清理对象框中输入要清理对象的完整地址（如：<span lang="en-us">http://www.example.com/test.jpg</span>）。</li>
+	</ol>
+	  </fieldset>
+</form>
+</body>
+</html>

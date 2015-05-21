@@ -25,6 +25,7 @@ function make_header($user, $token) {
 
 function http_request($url, $postdata, $header) {
     $ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
@@ -46,11 +47,11 @@ $action = 'purge';
 // 开放API主要信息，以下信息由加速乐提供.
 $API_INFO = array(
     // API接口地址
-    'url' => 'http://www.jiasule.com/api/site/'.$action.'/', 
+    'url' => 'https://www.jiasule.com/api/site/'.$action.'/', 
     // 认证用户名
-    'user' => '加速乐提供API验证用户名', 
+    'user' => '553a075bdf224fb92810e21f', 
     // 认证密钥
-    'secret_key' => '加速乐提供API验证密钥', 
+    'secret_key' => 'RxHScFXEFq5t18XbpxwQyqyNNKa8cv7eUIJ8PNIvqh72dS1pHcckjGn9dMEzbUfJ', 
 );
 // 获取清理类型
 $type=$_POST["type"];
